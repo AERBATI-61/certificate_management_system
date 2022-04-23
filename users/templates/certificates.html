@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/certificate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+
+
+{#    <body>#}
+{#    <div class="preloader"></div>#}
+{##}
+{#    <section class="request-a-call-back pdt-80 pdb-70" data-background="img/bg/6.html">#}
+{#        <div class="container" style="margin-right: 900px">#}
+{#            <div class="row col-lg-12" >#}
+{##}
+{#                {% for participant in certificates %}#}
+{#                    <br><br><br>#}
+{#                    <div class="outer-border" >#}
+{#                        <div class="inner-dotted-border"><span class="certification">{{ participant.cer_code }} {{ participant.cer_name }}</span>#}
+{#                            <br><br> <span class="certify"><i>{{ participant.cer_deg }}</i></span> <br><br> <span#}
+{#                                    class="name"><b>{{ participant.participant_name.name}}</b></span><br/><br/> <span class="certify"><i>{{ participant.cer_description}}</i></span>#}
+{#                            <br/><br/> <span class="fs-30">{{ participant.activity_name.activity_name}}</span> <br/><br/> <span class="fs-20">{{ participant.organisation_name.org_name}}</span>#}
+{#                            <br/><br/><br/><br/> <span class="certify"><i>dated</i></span><br> <span class="fs-20">{{ participant.activity_name.activity_date}}</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{##}
+{#        </div>#}
+{#    </section>#}
+{##}
+{##}
+{#    </body>#}
+
+
+
+
+
+    <body>
+
+    	<div class="preloader"></div>
+
+    	<section class="price-section pdt-160 pdb-130" style="margin-top: 40px">
+    		<div class="container">
+    			{% for certificate in certificates %}
+    			    <div class="row">
+    				<div class="col-lg-11 col-md-11 col-sm-9" style="margin-left: 60px">
+    					<div class="price-table mrb-30 text-center">
+    						<div class="table-header">
+    							<h4 class="pricing-plan-name">{{ certificate.cer_deg}}</h4>
+
+{#    							<h4 class="pricing-plan-name">{{ certificate.participant_name}} {{ certificate.participant_name.surname }}</h4>#}
+
+    						</div>
+
+    						<div class="table-content">
+                                <div style="border-radius: 35px; max-width: 10%; min-width: 10%; max-height: 20px; min-height: 20px">
+                                <img src="{{ certificate.organisation_name.org_image.url }}" alt="">
+
+                            </div>
+    							<ul class="list-items">
+
+    								<li><i class=" mrr-10 " style="margin-left: 700px; margin-bottom: 700px;"></i><strong><span style="color: #0c59db; font-size: 18px">{{ certificate.organisation_name.org_name }}</span></strong></li>
+    								<li><i class="mrr-10"></i><span style="color: darkblue; font-size: 24px; ">Sayın {{ certificate.participant_name.name }} {{ certificate.participant_name.surname }}</span></li>
+    								<li><i class="mrr-10"></i><span style="color: #0c59db; font-size: 24px">"{{ certificate.activity_name.activity_name }}"</span></li>
+    								<li><i class="mrr-10"></i><span>{{ certificate.activity_name.activity_date.date }} tarihinde {{ certificate.organisation_name.org_name }} Koordinatörlüğünde</span></li>
+    								{% for certificate in certificate.activity_name.host_name.all %}
+                                        <span style="font-size: 22px; color: #0c59db">{{ certificate.host_name }} {{ certificate.surname }}, </span>
+    								{% endfor %}
+
+                                    <br>
+
+
+                                    <li><i class="mrr-10"></i><span>"{{ certificate.organisation_name.org_description|truncatewords:30 }}"</span></li>
+
+    							</ul>
+    						</div>
+    						<div class="table-footer">
+    							<a href="#" class="cs-btn-one btn-gradient-color">PDF</a>
+    						</div>
+    					</div>
+    				</div>
+
+    			</div>
+    			{% endfor %}
+
+    		</div>
+    	</section>
+
+
+    </body>
+
+
+{% endblock %}

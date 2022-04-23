@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+    <body>
+    <!-- Preloader Start -->
+    <div class="preloader"></div>
+    <!-- Preloader End -->
+    <!-- Page Title Start -->
+
+    <!-- Page Title End -->
+    <!-- Service Details Section Start -->
+    <section class="service-details-page pdt-110 pdb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="row">
+
+                        {% if activities|length > 0 %}
+                            {% for activity in page_obj.object_list %}
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="news-wrapper mrb-30 mrb-sm-40">
+                                        <div class="news-thumb">
+                                            <a href="{% url 'activitydetail' activity.slug %}">
+                                                <img style="max-width: 100%; min-width: 100%; max-height: 250px; min-height: 250px"
+                                                     class="img-full" src="{{ activity.activity_image.url }}" alt="">
+                                            </a>
+
+                                            {% for activity in activity.org_name.all %}
+                                                <div class="news-top-meta">
+                                                    <span class="entry-category">{{ activity.org_name }}</span>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="news-details">
+                                            <div class="news-description mb-20">
+                                                <h4 class="the-title mrb-30"><a
+                                                        href="{% url 'activitydetail' activity.slug %}">{{ activity.activity_name }}</a>
+                                                </h4>
+                                                <div class="news-bottom-meta">
+                                                <span class="entry-date mrr-20"><i
+                                                        class="far fa-calendar-alt mrr-10 text-primary-color"></i>{{ activity.starttime }}</span><br>
+
+
+                                                </div>
+
+                                                <div class="news-bottom-meta">
+                                                <span class="entry-date mrr-20"><i
+                                                        class="far fa-calendar-alt mrr-10 text-primary-color"></i>{{ activity.Is_Past }}</span>
+
+                                                    {% for h in host %}
+                                                        {% for host_activity_name in h.activity_name.all %}
+                                                            {% if host_activity_name == activity %}
+                                                                <a href="{% url 'hosts' %}"><span
+                                                                        class="entry-author"><i
+                                                                        class="fas fa-users mrr-10 text-primary-color"></i>{{ h.host_name }}</span></a>
+                                                            {% endif %}
+
+
+                                                        {% endfor %}
+
+                                                    {% endfor %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+
+
+                        {% else %}
+                            <div class="col-lg-12 col-xl-6">
+                                <div class="news-wrapper mrb-30 mrb-sm-40">
+                                    <div class="alert alert-danger">there are no Articles</div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+
+                <div class="col-xl-4 col-lg-5 sidebar-right">
+                    <div class="service-nav-menu mrb-30">
+                        <div class="service-link-list mb-30">
+                            <ul class="active">
+                                {% if organizations|length > 0 %}
+                                    {% for organization in organizations %}
+                                        <li><a href="{% url 'activity_view_with_category' organization.slug %}">
+                                            <i class="fa fa-chevron-right"></i>{{ organization.org_name|title }} </a>
+                                        </li>
+                                    {% endfor %}
+
+                                {% else %}
+                                    <li>
+                                        <a href="{% url 'activity' %}" class="alert alert-danger">
+                                            <i class="fa fa-chevron-left"></i>Go Back </a>
+                                    </li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <nav class="pagination-nav pdt-30">
+                            <ul class="pagination-list">
+                                {% if page_obj.has_previous %}
+                                    <li class="pagination-left-arrow"><a
+                                            href="{% url 'activity' %}?page={{ page_obj.previous_page_number }}"><i
+                                            class="fa fa-angle-left"></i></a></li>
+                                {% endif %}
+                                <li class="active"><a href="#">{{ page_obj.number }} </a></li>
+                                {% if page_obj.has_next %}
+                                    <li class="pagination-right-arrow"><a
+                                            href="{% url 'activity' %}?page={{ page_obj.next_page_number }}"><i
+                                            class="fa fa-angle-right"></i></a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    </body>
+
+{% endblock %}
+

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+    <body>
+    <!-- Preloader Start -->
+    <div class="preloader"></div>
+    <!-- Preloader End -->
+
+
+    <!-- header End -->
+    <!-- Page Title Start -->
+
+    <!-- Page Title End -->
+    <!-- Service Details Section Start -->
+    <section class="blog-single-news pdt-110 pdb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="single-news-details news-wrapper mrb-30">
+                        <div class="news-thumb">
+                            <img class="img-full" src="{{ activity.activity_image.url }}" alt="">
+                            <div class="news-top-meta">
+                                {% for activity in activity.org_name.all %}
+                                    <span class="entry-category">{{ activity.org_name }}</span>
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                        <div class="single-news-content">
+                            <div class="news-bottom-meta mrt-20 mrb-10">
+                                {% for activity in activity.host_name.all %}
+                                    <span class="entry-author mrr-20"><i
+                                            class="far fa-user mrr-10 text-primary-color"></i>{{ activity.host_name }}</span>
+                                {% endfor %}
+                                <span class="entry-date"><i
+                                        class="far fa-calendar-alt mrr-10 text-primary-color"></i>{{ activity.activity_date }} {{ activity.starttime }} -- {{ activity.endtime }}</span>
+                            </div>
+                            <h3 class="entry-title text-capitalize mrb-20"><a href="#">{{ activity.activity_name }}</a>
+                            </h3>
+                            <div class="entry-content">
+                                <p>{{ activity.description }}</p>
+                                <blockquote class="block-quote">
+                                    <p>{{ activity.address }}</p>
+
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    </body>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
