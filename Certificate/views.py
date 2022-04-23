@@ -124,9 +124,8 @@ def organizationView(request):
 
 def certificateView(request, id, *args, **kwargs):
     certificate = Certificate.objects.filter(active=True, cer_code=id)
-
     context = {
-        'participants': Participant.objects.filter(certificate__activity_name=id),
+        'participants': Participant.objects.filter(activity_name=id),
         'certificates': certificate,
     }
     return render(request, 'certificates.html', context)

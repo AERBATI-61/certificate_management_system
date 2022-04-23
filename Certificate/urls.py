@@ -18,7 +18,7 @@ urlpatterns = [
     path('basarili/', Contactview.as_view(), name="contactview"),
 
     path('certificate/<int:id>', certificateView, name="certificate"),
-    # path('certificates', certificatesView, name="certificates"),
-    # path('certifica/<int:id>', certifica, name="certifica"),
+    path('certificates', certificatesView, name="certificates"),
+    path('certifica/<int:id>', certifica, name="certifica"),
     path('certificalar', certificalar, name="certificalar"),
 ]

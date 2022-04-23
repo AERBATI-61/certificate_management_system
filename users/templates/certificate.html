@@ -24,51 +24,50 @@
                                                 {% for certifica in certificates %}
                                                     {% if certifica.participant_name.name == participant.name %}
                                                         <tr style="text-align: center">
-                                                            <th><a href="{% url 'certificate' certifica.cer_code %}">{{ certifica.activity_name }}</a>
+                                                            <th>
+                                                                <a href="{% url 'certificate' certifica.cer_code %}">{{ certifica.activity_name }}</a>
                                                         </tr>
                                                     {% endif %}
 
                                                 {% endfor %}
 
                                                 </tbody>
-                                                {#                                                <tbody>#}
-                                                {#                                                <tr style="text-align: center">#}
-                                                {#                                                    <th colspan="3">#}
-                                                {##}
-                                                {##}
-                                                {#                                                        {% for activity in activities %}#}
-                                                {#                                                            {% for participant in participant.activity_name.all %}#}
-                                                {#                                                                {% if activity.id == participant.id %}#}
-                                                {#                                                                    <br>Certificate of#}
-                                                {##}
-                                                {#                                                                    <a href="{% url 'certificate' participant.id %}">#}
-                                                {##}
-                                                {#                                                                            {% if participant.activity_name %}#}
-                                                {#                                                                                {{ participant.activity_name }}#}
-                                                {##}
-                                                {##}
-                                                {#                                                                            {% endif %}#}
-                                                {##}
-                                                {##}
-                                                {##}
-                                                {##}
-                                                {#                                                                    </a>#}
-                                                {#                                                                     for {{ participant.name }}#}
-                                                {##}
-                                                {##}
-                                                {#                                                                {% endif %}#}
-                                                {##}
-                                                {#                                                            {% endfor %}#}
-                                                {##}
-                                                {##}
-                                                {#                                                        {% endfor %}#}
-                                                {##}
-                                                {#                                                    </th>#}
-                                                {##}
-                                                {#                                                </tr>#}
-                                                {##}
-                                                {##}
-                                                {#                                                </tbody>#}
+                                                <tbody>
+{#                                                <tr style="text-align: center">#}
+{#                                                    <th colspan="3">#}
+{##}
+{##}
+{#                                                        {% for activity in activities %}#}
+{#                                                            {% for participant in participant.activity_name.all %}#}
+{#                                                                {% if activity.id == participant.id %}#}
+{#                                                                    <br>Certificate of#}
+{##}
+{#                                                                    <a href="{% url 'certificate' participant.id %}">#}
+{##}
+{#                                                                        {% if participant.activity_name %}#}
+{#                                                                            {{ participant.activity_name }}#}
+{##}
+{##}
+{#                                                                        {% endif %}#}
+{##}
+{##}
+{#                                                                    </a>#}
+{#                                                                    for {{ participant.name }}#}
+{##}
+{##}
+{#                                                                {% endif %}#}
+{##}
+{#                                                            {% endfor %}#}
+{##}
+{##}
+{#                                                        {% endfor %}#}
+{##}
+{#                                                    </th>#}
+{##}
+{#                                                </tr>#}
+
+
+                                                </tbody>
                                             </table>
 
 

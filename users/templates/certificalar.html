@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{#    Lazim#}
 
     <body>
     <div class="preloader"></div>
@@ -19,44 +20,42 @@
                                         </div>
                                         <div class="accordion-body">
                                             <table class="table table-bordered">
+                                                <thead>
+                                                <tr style="text-align: center">
+                                                    <th scope="col">Education</th>
+                                                    <th scope="col">Contact</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr style="text-align: center">
+                                                    <th rowspan="3">{{ participant.university }}<br> {{ participant.department }}
+                                                        <br> {{ participant.edu_deg }}</th>
+                                                    <td rowspan="2">{{ participant.phone_number }}
+                                                        <br> {{ participant.email }}</td>
+                                                </tr>
+                                                </tbody>
                                                 <tbody>
                                                 {% for certificate in certificates %}
-
                                                     {% for activity in activities %}
                                                         {% for act in participant.activity_name.all %}
-                                                            {% if activity.id == act.id and certificate.participant_name.name == participant.name %}
-                                                                <tr style="text-align: center">
-                                                                    <th>
-                                                                        <a href="{% url 'certificate' certificate.cer_code %}">{{ certificate.activity_name }}</a>
-                                                                </tr>
+                                                            {% if certificate.participant_name.name == participant.name and activity.id == certificate.activity_name.id and act.id == certificate.activity_name.id %}
+                                                                    <tr style="text-align: center">
+                                                                        <th colspan="3">
+                                                                            <a href="{% url 'certificate' certificate.cer_code %}">{{ certificate.activity_name }}</a>
+                                                                    </tr>
                                                             {% endif %}
-
                                                         {% endfor %}
-
                                                     {% endfor %}
                                                 {% endfor %}
                                                 </tbody>
 
                                             </table>
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     {% endfor %}
-
-
-
-
-
-
-
-
 
                 {% else %}
                     <div class="col-lg-12">

@@ -107,6 +107,7 @@ class Certificate(models.Model):
     cer_description = models.TextField()
     organisation_name = models.ForeignKey(Organization, on_delete=models.CASCADE, null=False, blank=False)
     participant_name = models.ForeignKey(Participant, on_delete=models.CASCADE, null=False, blank=False)
+    host_name = models.ManyToManyField('Host', )
     activity_name = models.ForeignKey(Activity, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

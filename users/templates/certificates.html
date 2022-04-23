@@ -64,7 +64,7 @@
     								<li><i class="mrr-10"></i><span style="color: darkblue; font-size: 24px; ">Sayın {{ certificate.participant_name.name }} {{ certificate.participant_name.surname }}</span></li>
     								<li><i class="mrr-10"></i><span style="color: #0c59db; font-size: 24px">"{{ certificate.activity_name.activity_name }}"</span></li>
     								<li><i class="mrr-10"></i><span>{{ certificate.activity_name.activity_date.date }} tarihinde {{ certificate.organisation_name.org_name }} Koordinatörlüğünde</span></li>
-    								{% for certificate in certificate.activity_name.host_name.all %}
+    								{% for certificate in certificate.host_name.all %}
                                         <span style="font-size: 22px; color: #0c59db">{{ certificate.host_name }} {{ certificate.surname }}, </span>
     								{% endfor %}
 

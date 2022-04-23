@@ -23,8 +23,6 @@
                                                 <tr style="text-align: center">
                                                     <th scope="col">Education</th>
                                                     <th scope="col">Contact</th>
-
-
                                                 </tr>
                                                 </thead>
 
@@ -33,37 +31,34 @@
                                                     <th rowspan="3">{{ participant.university }}<br> {{ participant.department }}
                                                         <br> {{ participant.edu_deg }}</th>
                                                     <td rowspan="2">{{ participant.phone_number }}
-                                                        <br> {{ participant.email }}</td>
-
-
+                                                        <br> {{ participant.email }} </td>
                                                 </tr>
-
-
                                                 </tbody>
-                                                <tbody>
-                                                <tr style="text-align: center">
-                                                    <th>
-                                                        {% for activity in activities %}
-                                                            {% for participant in participant.activity_name.all %}
-                                                                {% if activity.id == participant.id %}
-                                                                    <tr style="text-align: center">
-                                                                        <th colspan="3">
-                                                                            <a href="{% url 'certificate' participant.id %}">
-                                                                                {% if participant.activity_name %}
-                                                                                aaaa
-                                                                                {% endif %}
-                                                                                <br>
-                                                                            </a>
-                                                                        </th>
+                                                <p>Zehra Busra ile beraber yapilacak</p>
 
-                                                                    </tr>
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        {% endfor %}
-                                                </th>
-
-
-                                                </tbody>
+{#                                                <tbody>#}
+{#                                                <tr style="text-align: center">#}
+{#                                                    <th>#}
+{#                                                        {% for activity in activities %}#}
+{#                                                            {% for participant in participant.activity_name.all %}#}
+{#                                                                {% if activity.id == participant.id %}#}
+{#                                                                    <tr style="text-align: center">#}
+{#                                                                        <th colspan="3">#}
+{#                                                                            <a href="{% url 'certificate' activity.id %}">#}
+{#                                                                            {{ activity.activity_name }}#}
+{#                                                                                {% if participant.activity_name %}#}
+{##}
+{#                                                                                {% endif %}#}
+{#                                                                                <br>#}
+{#                                                                            </a>#}
+{#                                                                        </th>#}
+{##}
+{#                                                                    </tr>#}
+{#                                                                {% endif %}#}
+{#                                                            {% endfor %}#}
+{#                                                        {% endfor %}#}
+{#                                                </th>#}
+{#                                                </tbody>#}
                                             </table>
 
 
