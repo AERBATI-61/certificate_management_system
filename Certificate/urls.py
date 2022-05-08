@@ -19,6 +19,5 @@ urlpatterns = [
 
     path('certificate/<int:id>', certificateView, name="certificate"),
     path('certificates', certificatesView, name="certificates"),
-    path('certifica/<int:id>', certifica, name="certifica"),
     path('certificalar', certificalar, name="certificalar"),
 ]

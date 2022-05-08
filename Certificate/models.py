@@ -26,17 +26,16 @@ type_of_certificate = (
     ("Aword Certificate", "Aword Certificate")
 )
 
-
 class Activity(models.Model):
-    org_name = models.ManyToManyField('Organization')
-    activity_name = models.CharField(max_length=64, null=False, blank=False)
-    activity_image = models.ImageField(upload_to='activity', blank=True, null=True)
-    active = models.BooleanField()
-    address = models.TextField()
-    description = models.TextField()
-    starttime = models.DateTimeField(auto_now_add=False)
-    endtime = models.DateTimeField(auto_now_add=False)
-    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True, editable=False)
+    org_name                = models.ManyToManyField('Organization')
+    activity_name           = models.CharField(max_length=64, null=False, blank=False)
+    activity_image          = models.ImageField(upload_to='activity', blank=True, null=True)
+    active                  = models.BooleanField()
+    address                 = models.TextField()
+    description             = models.TextField()
+    starttime               = models.DateTimeField(auto_now_add=False)
+    endtime                 = models.DateTimeField(auto_now_add=False)
+    slug                    = models.SlugField(null=False, blank=True, unique=True, db_index=True, editable=False)
 
     def __str__(self):
         return self.activity_name
@@ -48,7 +47,7 @@ class Activity(models.Model):
     @property
     def Is_Past(self):
         today = date.today()
-        if self.starttime.date() < today and self.endtime.time() < datetime.now().time():
+        if self.starttime.date() < today:
             thing = "Past"
         else:
             thing = "Future"
@@ -56,6 +55,7 @@ class Activity(models.Model):
 
     class Meta:
         ordering = ["-starttime"]
+
 
 
 

@@ -5,13 +5,19 @@ from django.views import View
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from django.db.models import Q
 
 
 def indexView(request):
-    certificates = Certificate.objects.all()
-    organization = Organization.objects.all()
-    activities = Activity.objects.all()
-    return render(request, 'index.html')
+    organization = Organization.objects.all()[:3],
+    activities = Activity.objects.all()[:3],
+    participants = Participant.objects.all()[:3]
+    context = {
+        'participants': participants,
+        'activities': activities,
+        'organization': organization,
+    }
+    return render(request, 'index.html', context)
 
 
 def activityView(request):
@@ -123,6 +129,7 @@ def organizationView(request):
 
 
 def certificateView(request, id, *args, **kwargs):
+
     certificate = Certificate.objects.filter(active=True, cer_code=id)
     context = {
         'participants': Participant.objects.filter(activity_name=id),
@@ -132,6 +139,7 @@ def certificateView(request, id, *args, **kwargs):
 
 
 def certificatesView(request):
+
     certificates = Certificate.objects.all()
     context = {
         'certificates': certificates
@@ -139,22 +147,26 @@ def certificatesView(request):
     return render(request, 'certificates.html', context)
 
 
-def certifica(request, id, *args, **kwargs):
-    certificate = Certificate.objects.filter(active=True, cer_code=id)
-    activities = Activity.objects.all()
-    participants = Participant.objects.all()
-    context = {
-        'certificates': certificate,
-        'activities': activities,
-        'participants': participants
-    }
-    return render(request, 'certificate.html', context)
+
 
 
 def certificalar(request):
+    context = {}
     activities = Activity.objects.all()
     participants = Participant.objects.all()
     certificate = Certificate.objects.all()
+    keyword = request.GET.get("keyword")
+    print(keyword)
+    if keyword:
+        # participant_name__phone_number__contains = keyword,
+        participants = Participant.objects.filter(Q(name__contains=keyword) | Q(phone_number = keyword))
+        print(participants)
+        return render(request, "certificalar.html", {'participants': participants, 'activities': activities, 'certificates': certificate})
+
+
+
+
+
     context = {
         'certificates': certificate,
         'activities': activities,

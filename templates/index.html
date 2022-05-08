@@ -9,7 +9,7 @@
     <div class="home-carousel owl-theme owl-carousel">
         <div class="slide-item">
             <div class="image-layer">
-                <img src="{% static 'images/bg/1.jpg' %}" alt="">
+                <img src="{% static 'images/bg/certificate.jpg' %}" alt="">
             </div>
             <div class="auto-container">
                 <div class="row clearfix">
@@ -19,7 +19,7 @@
                             <p>We have almost 35+ years of experience for <br>providing consulting services solutions
                             </p>
                             <div class="btn-box">
-                                <a href="#" class="cs-btn-one btn-gradient-color">Get a Quote</a>
+                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
 
         <div class="slide-item">
             <div class="image-layer">
-                <img src="{% static 'images/bg/2.jpg' %}" alt="">
+                <img src="{% static 'images/bg/buldu.jpg' %}" alt="">
             </div>
             <div class="auto-container">
                 <div class="row clearfix">
@@ -40,7 +40,7 @@
                             <p>We have almost 35+ years of experience for <br>providing consulting services solutions
                             </p>
                             <div class="btn-box">
-                                <a href="#" class="cs-btn-one btn-gradient-color">Get a Quote</a>
+                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
 
         <div class="slide-item">
             <div class="image-layer">
-                <img src="{% static 'images/bg/3.jpg' %}" alt="">
+                <img src="{% static 'images/bg/code.jpg' %}" alt="">
             </div>
             <div class="auto-container">
                 <div class="row clearfix">
@@ -60,7 +60,7 @@
                             <p>We have almost 35+ years of experience for <br>providing consulting services solutions
                             </p>
                             <div class="btn-box">
-                                <a href="#" class="cs-btn-one btn-gradient-color">Get a Quote</a>
+                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>
                             </div>
                         </div>
                     </div>
@@ -91,73 +91,90 @@
             <div class="container">
                 <div class="row">
 
+{#                    {% for activity in activities %}#}
+{#                        <div class="col-md-6 col-lg-6 col-xl-4">#}
+{#                        <div class="news-wrapper mrb-30 mrb-sm-40">#}
+{#                            <div class="news-thumb">#}
+{#                                <img class="img-full" src="{% static 'images/news/01.jpg' %}" alt="">#}
+{#                                <div class="news-top-meta">#}
+{#                                    <span class="entry-category">{{ activity.activity_name }}</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="news-details">#}
+{#                                <div class="news-description mb-20">#}
+{#                                    <h4 class="the-title mrb-30"><a href="#">{{ activity.description }}</a>#}
+{#                                    </h4>#}
+{#                                    <div class="news-bottom-meta">#}
+{#                                    <span class="entry-date mrr-20"><i#}
+{#                                            class="far fa-calendar-alt mrr-10 text-primary-color"></i>01 Jan, 2020</span>#}
+{#                                        <span class="entry-author"><i class="far fa-user mrr-10 text-primary-color"></i>Admin</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+                    {% if activities|length > 0 %}
+                            {% for activity in activities %}
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="news-wrapper mrb-30 mrb-sm-40">
+                                        <div class="news-thumb">
+                                            <a href="#">
+                                                <img style="max-width: 100%; min-width: 100%; max-height: 250px; min-height: 250px"
+                                                     class="img-full" src="{{ activity.activity_image.url }}" alt="">
+                                            </a>
 
-                    <div class="col-md-6 col-lg-6 col-xl-4">
-                        <div class="news-wrapper mrb-30 mrb-sm-40">
-                            <div class="news-thumb">
-                                <img class="img-full" src="{% static 'images/news/01.jpg' %}" alt="">
-                                <div class="news-top-meta">
-                                    <span class="entry-category">Business</span>
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <div class="news-description mb-20">
-                                    <h4 class="the-title mrb-30"><a href="#">Tech Entrepreneur Credits Paper For
-                                        Success</a>
-                                    </h4>
-                                    <div class="news-bottom-meta">
-                                    <span class="entry-date mrr-20"><i
-                                            class="far fa-calendar-alt mrr-10 text-primary-color"></i>01 Jan, 2020</span>
-                                        <span class="entry-author"><i class="far fa-user mrr-10 text-primary-color"></i>Admin</span>
+                                            {% for activity in activity.org_name.all %}
+                                                <div class="news-top-meta">
+                                                    <span class="entry-category">{{ activity.org_name }}</span>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="news-details">
+                                            <div class="news-description mb-20">
+                                                <h4 class="the-title mrb-30"><a
+                                                        href="#">{{ activity.activity_name }}</a>
+                                                </h4>
+                                                <div class="news-bottom-meta">
+                                                <span class="entry-date mrr-20"><i
+                                                        class="far fa-calendar-alt mrr-10 text-primary-color"></i>{{ activity.starttime }}</span><br>
+
+
+                                                </div>
+
+                                                <div class="news-bottom-meta">
+                                                <span class="entry-date mrr-20"><i
+                                                        class="far fa-calendar-alt mrr-10 text-primary-color"></i>{{ activity.Is_Past }}</span>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-4">
-                        <div class="news-wrapper mrb-30 mrb-sm-40">
-                            <div class="news-thumb">
-                                <img class="img-full" src="{% static 'images/news/02.jpg' %}" alt="">
-                                <div class="news-top-meta">
-                                    <span class="entry-category">Business</span>
+
+                            {% endfor %}
+
+
+
+                        {% else %}
+                            <div class="col-lg-12 col-xl-6">
+                                <div class="news-wrapper mrb-30 mrb-sm-40">
+                                    <div class="alert alert-danger">there are no Articles</div>
                                 </div>
                             </div>
-                            <div class="news-details">
-                                <div class="news-description mb-20">
-                                    <h4 class="the-title mrb-30"><a href="#">Tech Entrepreneur Credits Paper For
-                                        Success</a>
-                                    </h4>
-                                    <div class="news-bottom-meta">
-                                    <span class="entry-date mrr-20"><i
-                                            class="far fa-calendar-alt mrr-10 text-primary-color"></i>01 Jan, 2020</span>
-                                        <span class="entry-author"><i class="far fa-user mrr-10 text-primary-color"></i>Admin</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-4">
-                        <div class="news-wrapper mrb-30 mrb-sm-40">
-                            <div class="news-thumb">
-                                <img class="img-full" src="{% static 'images/news/03.jpg' %}" alt="">
-                                <div class="news-top-meta">
-                                    <span class="entry-category">Business</span>
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <div class="news-description mb-20">
-                                    <h4 class="the-title mrb-30"><a href="#">Tech Entrepreneur Credits Paper For
-                                        Success</a>
-                                    </h4>
-                                    <div class="news-bottom-meta">
-                                    <span class="entry-date mrr-20"><i
-                                            class="far fa-calendar-alt mrr-10 text-primary-color"></i>01 Jan, 2020</span>
-                                        <span class="entry-author"><i class="far fa-user mrr-10 text-primary-color"></i>Admin</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        {% endif %}
+
+
+
+
+
+
+
+
 
                 </div>
             </div>
@@ -165,70 +182,7 @@
     </section>
 
     <!-- Feature Section Start -->
-    <section class="feature-section pdt-110 pdb-130 bg-silver-light bg-no-repeat"
-             data-background="images/bg/abs-bg5.png">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-xl-4">
-                    <div class="feature-box mrb-lg-60">
-                        <div class="feature-thumb">
-                            <img class="img-full" src="{% static 'images/feature/f1.png' %}" alt="">
-                        </div>
-                        <div class="feature-content">
-                            <div class="title">
-                                <h3>Creative Design</h3>
-                            </div>
-                            <div class="para">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est amet similique ipsum
-                                    reprehenderit sed.</p>
-                            </div>
-                            <div class="link">
-                                <a href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="feature-box mrb-lg-60">
-                        <div class="feature-thumb">
-                            <img class="img-full" src="{% static 'images/feature/f2.png' %}" alt="">
-                        </div>
-                        <div class="feature-content">
-                            <div class="title">
-                                <h3>Complete Analysis</h3>
-                            </div>
-                            <div class="para">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est amet similique ipsum
-                                    reprehenderit sed.</p>
-                            </div>
-                            <div class="link">
-                                <a href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-4">
-                    <div class="feature-box">
-                        <div class="feature-thumb">
-                            <img class="img-full" src="{% static 'images/feature/f3.png' %}" alt="">
-                        </div>
-                        <div class="feature-content">
-                            <div class="title">
-                                <h3>Optimal Solution</h3>
-                            </div>
-                            <div class="para">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est amet similique ipsum
-                                    reprehenderit sed.</p>
-                            </div>
-                            <div class="link">
-                                <a href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- Feature Section End -->
     <!-- About Section Start -->
     <section class="about-section anim-object pdt-110 pdb-50 pdb-lg-80">
@@ -280,7 +234,7 @@
                         <div class="icon">
                             <span class="webexflaticon flaticon-trophy-1"></span>
                         </div>
-                        <h2 class="counter">1280</h2>
+                        <h2 class="counter">{{ activity.count }}</h2>
                         <h5 class="title">Awards Achieved</h5>
                     </div>
                 </div>
