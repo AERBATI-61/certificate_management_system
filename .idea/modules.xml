@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../KTU/.idea/Kulder_ktu.iml" filepath="$PROJECT_DIR$/../KTU/.idea/Kulder_ktu.iml" />
-      <module fileurl="file://$USER_HOME$/OneDrive - Karadeniz Teknik University/Desktop/new_projects/Sirket/.idea/Sirket.iml" filepath="$USER_HOME$/OneDrive - Karadeniz Teknik University/Desktop/new_projects/Sirket/.idea/Sirket.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/certificate_management_system.iml" filepath="$PROJECT_DIR$/.idea/certificate_management_system.iml" />
     </modules>
   </component>

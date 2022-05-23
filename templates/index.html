@@ -81,9 +81,7 @@
                         <h5 class="mrb-15 text-primary-color sub-title-side-line">News And Updates</h5>
                         <h2 class="mrb-30">Let's Checkout our All Latest News</h2>
                     </div>
-                    <div class="col-lg-4 col-xl-6 align-self-center text-left text-lg-right">
-                        <a href="#" class="cs-btn-one btn-gradient-color btn-md">All News</a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -114,9 +112,9 @@
 {#                        </div>#}
 {#                    </div>#}
 {#                    {% endfor %}#}
-                    {% if activities|length > 0 %}
-                            {% for activity in activities %}
-                                <div class="col-lg-12 col-xl-6">
+                    {% if selected_activities|length > 0 %}
+                            {% for activity in selected_activities %}
+                                <div class="col-lg-12 col-xl-4">
                                     <div class="news-wrapper mrb-30 mrb-sm-40">
                                         <div class="news-thumb">
                                             <a href="#">
@@ -185,66 +183,43 @@
 
     <!-- Feature Section End -->
     <!-- About Section Start -->
-    <section class="about-section anim-object pdt-110 pdb-50 pdb-lg-80">
+    <section class="about-section pdt-80 pdb-20 pdb-lg-20">
         <div class="container">
-
-
-            <div class="row align-items-center">
-                <div class="col-md-12 col-xl-6">
-                    <div class="about-image-block mrb-lg-60">
-                        <img class="img-full" src="{% static 'images/about/2.png' %}" alt="">
-                    </div>
-                </div>
-                <div class="col-md-12 col-xl-6">
-                    <h2 class="title-under-line mrb-70">We have 32+ <span
-                            class="f-weight-400">Years Business Experiences</span></h2>
-                    <h5 class="mrb-30 text-primary-color">Trusted Business Consulting Service Provider</h5>
-                    <p class="mrb-40">Distinctively exploit optimal alignments for intuitive. Quickly coordinate
-                        business
-                        applications through revolutionary catalysts for chang the Seamlessly optimal testing procedures
-                        whereas processes. Synerg stically evolve 2.0 technologies rather than just in web & apps
-                        development optimal alignments for intuitive.</p>
-                    <div class="signature mrb-30"><img src="{% static 'images/about/signature.png' %}" alt=""></div>
-                    <a href="#" class="cs-btn-one btn-gradient-color btn-lg">Read More</a>
-                </div>
-            </div>
-
-
-            <div class="row mrt-100 mrt-lg-90">
+            <div class="row mrt-40 mrt-lg-50">
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="funfact mrb-lg-30 mrb-60">
                         <div class="icon">
-                            <span class="webexflaticon flaticon-man-2"></span>
+                            <img src="{% static 'images/icons/activities.png' %}" alt="">
                         </div>
-                        <h2 class="counter">1450</h2>
-                        <h5 class="title">Happy Customers</h5>
+                        <h2 class="counter">{{ activities.count }}</h2>
+                        <h5 class="title">All Activities</h5>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="funfact mrb-lg-30 mrb-60">
                         <div class="icon">
-                            <span class="webexflaticon flaticon-like-3"></span>
+                            <img src="{% static 'images/icons/participans.png' %}" alt="">
                         </div>
-                        <h2 class="counter">1864</h2>
-                        <h5 class="title">Peoples Likes</h5>
+                        <h2 class="counter">{{ participants.count }}</h2>
+                        <h5 class="title">All Participants</h5>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="funfact mrb-lg-30 mrb-60">
                         <div class="icon">
-                            <span class="webexflaticon flaticon-trophy-1"></span>
+                            <img src="{% static 'images/icons/hosts.png' %}" alt="">
                         </div>
-                        <h2 class="counter">{{ activity.count }}</h2>
-                        <h5 class="title">Awards Achieved</h5>
+                        <h2 class="counter">{{ hosts.count }}</h2>
+                        <h5 class="title">All Hosts</h5>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="funfact mrb-lg-30 mrb-60">
                         <div class="icon">
-                            <span class="webexflaticon flaticon-briefcase-1"></span>
+                            <img src="{% static 'images/icons/organizations.png' %}" alt="">
                         </div>
-                        <h2 class="counter">32</h2>
-                        <h5 class="title">Experiences</h5>
+                        <h2 class="counter">{{ organizations.count }}</h2>
+                        <h5 class="title">All Organizations</h5>
                     </div>
                 </div>
             </div>
@@ -277,14 +252,17 @@
         <div class="section-content">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+
+
+                    {% for selected_host in selected_hosts %}
+                        <div class="col-md-6 col-lg-6 col-xl-4">
                         <div class="team-block mrb-30">
                             <div class="team-upper-part">
-                                <img class="img-full" src="{% static 'images/team/team01.jpg' %}" alt="">
+                                <img style="max-width: 100%; min-width: 100%; max-height: 250px; min-height: 250px" class="img-full" src="{{ selected_host.host_image.url }}" alt="">
                             </div>
                             <div class="team-bottom-part">
-                                <h4 class="team-title mrb-5"><a href="#">Jack Mehoff</a></h4>
-                                <h6 class="designation">Engineer</h6>
+                                <h4 class="team-title mrb-5"><a href="#">{{ selected_host.host_name }}</a></h4>
+                                <h6 class="designation">{{ selected_host.position }}</h6>
                                 <ul class="social-list vertical-style list-sm">
                                     <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -294,57 +272,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="team-block mrb-30">
-                            <div class="team-upper-part">
-                                <img class="img-full" src="{% static 'images/team/team02.jpg' %}" alt="">
-                            </div>
-                            <div class="team-bottom-part">
-                                <h4 class="team-title mrb-5"><a href="#">Jack Mehoff</a></h4>
-                                <h6 class="designation">Engineer</h6>
-                                <ul class="social-list vertical-style list-sm">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="team-block mrb-30">
-                            <div class="team-upper-part">
-                                <img class="img-full" src="{% static 'images/team/team03.jpg' %}" alt="">
-                            </div>
-                            <div class="team-bottom-part">
-                                <h4 class="team-title mrb-5"><a href="#">Jack Mehoff</a></h4>
-                                <h6 class="designation">Engineer</h6>
-                                <ul class="social-list vertical-style list-sm">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="team-block mrb-30">
-                            <div class="team-upper-part">
-                                <img class="img-full" src="{% static 'images/team/team04.jpg' %}" alt="">
-                            </div>
-                            <div class="team-bottom-part">
-                                <h4 class="team-title mrb-5"><a href="#">Jack Mehoff</a></h4>
-                                <h6 class="designation">Engineer</h6>
-                                <ul class="social-list vertical-style list-sm">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
+                    {% endfor %}
+
+
+
+
+
                 </div>
 
             </div>
@@ -433,111 +367,7 @@
     </section>
     <!-- Divider Section End -->
     <!-- Case Study Section Start -->
-    <section class="case-study-section anim-object2 pdt-105">
-        <div class="section-title">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="section-title-left-part mrb-sm-30">
-                            <div class="section-left-sub-title mb-20">
-                                <h5 class="sub-title text-primary-color">Project Completed</h5>
-                            </div>
-                            <h2 class="title">Consulting Area</h2>
-                        </div>
-                    </div>
-                    <div class="offset-lg-1 col-lg-6">
-                        <div class="section-title-right-part">
-                            <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos aperiam porro
-                                necessitatibus, consequuntur, reiciendis dolore doloribus id repellendus tempora vitae
-                                quia
-                                voluptas ipsum eligendi hic.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section-content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="owl-carousel project-items-4col long-gap-left">
-                        <div class="case-study-item">
-                            <div class="case-study-thumb">
-                                <img class="img-full" src="{% static 'images/case-study/case-study_01.jpg' %}" alt="">
-                                <div class="case-study-link-icon">
-                                    <a href="#"><i class="webex-icon-attachment1"></i></a>
-                                </div>
-                                <div class="case-study-details p-4">
-                                    <h6 class="case-study-category side-line mrb-5">Consulting</h6>
-                                    <h4 class="case-study-title">Business Solution</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="case-study-item">
-                            <div class="case-study-thumb">
-                                <img class="img-full" src="{% static 'images/case-study/case-study_02.jpg' %}" alt="">
-                                <div class="case-study-link-icon">
-                                    <a href="#"><i class="webex-icon-attachment1"></i></a>
-                                </div>
-                                <div class="case-study-details p-4">
-                                    <h6 class="case-study-category side-line mrb-5">Consulting</h6>
-                                    <h4 class="case-study-title">Business Solution</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="case-study-item">
-                            <div class="case-study-thumb">
-                                <img class="img-full" src="{% static 'images/case-study/case-study_03.jpg' %}" alt="">
-                                <div class="case-study-link-icon">
-                                    <a href="#"><i class="webex-icon-attachment1"></i></a>
-                                </div>
-                                <div class="case-study-details p-4">
-                                    <h6 class="case-study-category side-line mrb-5">Consulting</h6>
-                                    <h4 class="case-study-title">Business Solution</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="case-study-item">
-                            <div class="case-study-thumb">
-                                <img class="img-full" src="{% static 'images/case-study/case-study_04.jpg' %}" alt="">
-                                <div class="case-study-link-icon">
-                                    <a href="#"><i class="webex-icon-attachment1"></i></a>
-                                </div>
-                                <div class="case-study-details p-4">
-                                    <h6 class="case-study-category side-line mrb-5">Consulting</h6>
-                                    <h4 class="case-study-title">Business Solution</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="case-study-item">
-                            <div class="case-study-thumb">
-                                <img class="img-full" src="{% static 'images/case-study/case-study_05.jpg' %}" alt="">
-                                <div class="case-study-link-icon">
-                                    <a href="#"><i class="webex-icon-attachment1"></i></a>
-                                </div>
-                                <div class="case-study-details p-4">
-                                    <h6 class="case-study-category side-line mrb-5">Consulting</h6>
-                                    <h4 class="case-study-title">Business Solution</h4>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="case-study-item">
-                            <div class="case-study-thumb">
-                                <img class="img-full" src="{% static 'images/case-study/case-study_01.jpg' %}" alt="">
-                                <div class="case-study-link-icon">
-                                    <a href="#"><i class="webex-icon-attachment1"></i></a>
-                                </div>
-                                <div class="case-study-details p-4">
-                                    <h6 class="case-study-category side-line mrb-5">Consulting</h6>
-                                    <h4 class="case-study-title">Business Solution</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Case Study Section End -->
     <!-- Clients Section Start -->
     <section class="pdt-60 pdb-90">
@@ -578,69 +408,23 @@
             <div class="container">
                 <div class="row">
                     <div class="owl-carousel testimonial-items-2col mrb-lg-40">
-                        <div class="testimonial-item">
-                            <span class="quote-icon fas fa-quote-right"></span>
-                            <div class="testimonial-thumb">
-                                <img src="{% static 'images/testimonials/testimonial-img1.jpg' %}" alt="">
+                        {% for organization in organizations %}
+                            <div class="testimonial-item">
+                                <span class="quote-icon fas fa-quote-right"></span>
+                                <div class="testimonial-thumb">
+                                    <img style="max-width: 100%; min-width: 100%; max-height: 150px; min-height: 150px"
+                                         src="{{ organization.org_image.url }}" alt="">
+                                </div>
+                                <a href="{% url 'activity_view_with_category' organization.slug %}"><h4 class="client-name" style="color: #0c59db">{{ organization.org_name }}</h4></a>
+                                <h6 class="client-designation" style="color: #4b75bd">{{ organization.authorized }}</h6>
+                                <div class="testimonial-content">
+                                    <p class="comments">{{ organization.org_description|truncatechars:300 }}</p>
+                                </div>
                             </div>
-                            <h4 class="client-name">Aurther Maxwell</h4>
-                            <h6 class="client-designation">CEO, Apple Inc.</h6>
-                            <div class="testimonial-content">
-                                <p class="comments">Lorem ipsum dolor sit amet, consectetur adipisicing elit oluptatibus
-                                    blanditiis amet optio fugiat nisi est repellendus iusto quis harum laboriosam
-                                    nostrum
-                                    unde distinctio</p>
-                                <ul class="star-rating">
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-half text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-empty text-primary-color"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <span class="quote-icon fas fa-quote-right"></span>
-                            <div class="testimonial-thumb">
-                                <img src="{% static 'images/testimonials/testimonial-img2.jpg' %}" alt="">
-                            </div>
-                            <h4 class="client-name">Aurther Maxwell</h4>
-                            <h6 class="client-designation">CEO, Apple Inc.</h6>
-                            <div class="testimonial-content">
-                                <p class="comments">Lorem ipsum dolor sit amet, consectetur adipisicing elit oluptatibus
-                                    blanditiis amet optio fugiat nisi est repellendus iusto quis harum laboriosam
-                                    nostrum
-                                    unde distinctio</p>
-                                <ul class="star-rating">
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-half text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-empty text-primary-color"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <span class="quote-icon fas fa-quote-right"></span>
-                            <div class="testimonial-thumb">
-                                <img src="{% static 'images/testimonials/testimonial-img3.jpg' %}" alt="">
-                            </div>
-                            <h4 class="client-name">Aurther Maxwell</h4>
-                            <h6 class="client-designation">CEO, Apple Inc.</h6>
-                            <div class="testimonial-content">
-                                <p class="comments">Lorem ipsum dolor sit amet, consectetur adipisicing elit oluptatibus
-                                    blanditiis amet optio fugiat nisi est repellendus iusto quis harum laboriosam
-                                    nostrum
-                                    unde distinctio</p>
-                                <ul class="star-rating">
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-full text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-half text-primary-color"></i></li>
-                                    <li><i class="webex-icon-star-empty text-primary-color"></i></li>
-                                </ul>
-                            </div>
-                        </div>
+
+                        {% endfor %}
+
+
                     </div>
                 </div>
             </div>

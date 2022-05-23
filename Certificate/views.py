@@ -1,21 +1,61 @@
 from datetime import date
 from django.core.paginator import Paginator, EmptyPage
+from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.views import View
 from django.shortcuts import render
 from .models import *
 from .forms import *
 from django.db.models import Q
-
+import random
+# from utils.pdf import render_to_pdf
 
 def indexView(request):
-    organization = Organization.objects.all()[:3],
-    activities = Activity.objects.all()[:3],
-    participants = Participant.objects.all()[:3]
+    organizations = Organization.objects.all()
+    hosts = Host.objects.all()
+    activities = Activity.objects.all()
+    participants = Participant.objects.all()
+
+
+    selected_activities = []
+    while len(selected_activities) < 3:
+        activity = random.choice(activities)
+        if activity not in selected_activities:
+            selected_activities.append(activity)
+
+
+
+    selected_hosts = []
+    while len(selected_hosts) < 3:
+        host = random.choice(hosts)
+        if host not in selected_hosts:
+            selected_hosts.append(host)
+
+    selected_participants = []
+    while len(selected_participants) < 3:
+        participant = random.choice(participants)
+        if participant not in selected_participants:
+            selected_participants.append(participant)
+
+    selected_organizations = []
+    while len(selected_organizations) < 3:
+        organization = random.choice(organizations)
+        if organization not in selected_organizations:
+            selected_organizations.append(organization)
+
+
+
+
+
     context = {
         'participants': participants,
         'activities': activities,
-        'organization': organization,
+        'selected_activities': selected_activities,
+        'selected_hosts': selected_hosts,
+        'selected_participants': selected_participants,
+        'organizations': organizations,
+        'selected_organizations': selected_organizations,
+        'hosts': hosts,
     }
     return render(request, 'index.html', context)
 
@@ -174,3 +214,32 @@ def certificalar(request):
     }
     return render(request, 'certificalar.html', context)
 
+
+
+
+
+
+
+def download_pdf(request, id):
+
+
+
+
+
+    data = {
+        "company": "Dennnis Ivanov Company",
+        "address": "123 Street name",
+        "city": "Vancouver",
+        "state": "WA",
+        "zipcode": "98663",
+        "phone": "555-555-2345",
+        "email": "youremail@dennisivy.com",
+        "website": "dennisivy.com",
+
+
+    }
+    pdf = render_to_pdf('users/certificalar.html', data)
+    filename = f"{id}"
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="{}"'.format(filename)
+    return response
