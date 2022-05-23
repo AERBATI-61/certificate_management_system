@@ -18,9 +18,9 @@
                             <h1>Make a Good Plan & <br> Grow Your Business</h1>
                             <p>We have almost 35+ years of experience for <br>providing consulting services solutions
                             </p>
-                            <div class="btn-box">
-                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>
-                            </div>
+{#                            <div class="btn-box">#}
+{#                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>#}
+{#                            </div>#}
                         </div>
                     </div>
                 </div>
@@ -39,9 +39,9 @@
                             <h1>Make a Good Plan & <br> Grow Your Business</h1>
                             <p>We have almost 35+ years of experience for <br>providing consulting services solutions
                             </p>
-                            <div class="btn-box">
-                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>
-                            </div>
+{#                            <div class="btn-box">#}
+{#                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>#}
+{#                            </div>#}
                         </div>
                     </div>
                 </div>
@@ -59,9 +59,9 @@
                             <h1>Make a Good Plan & <br> Grow Your Business</h1>
                             <p>We have almost 35+ years of experience for <br>providing consulting services solutions
                             </p>
-                            <div class="btn-box">
-                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>
-                            </div>
+{#                            <div class="btn-box">#}
+{#                                <a href="{% url 'activity' %}" class="cs-btn-one btn-gradient-color">Get a Activity</a>#}
+{#                            </div>#}
                         </div>
                     </div>
                 </div>
@@ -78,8 +78,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-xl-6">
-                        <h5 class="mrb-15 text-primary-color sub-title-side-line">News And Updates</h5>
-                        <h2 class="mrb-30">Let's Checkout our All Latest News</h2>
+                        <h5 class="mrb-15 text-primary-color sub-title-side-line">Activities</h5>
+                        <h2 class="mrb-30">Let's Checkout our All Latest Activities</h2>
                     </div>
 
                 </div>
@@ -89,42 +89,19 @@
             <div class="container">
                 <div class="row">
 
-{#                    {% for activity in activities %}#}
-{#                        <div class="col-md-6 col-lg-6 col-xl-4">#}
-{#                        <div class="news-wrapper mrb-30 mrb-sm-40">#}
-{#                            <div class="news-thumb">#}
-{#                                <img class="img-full" src="{% static 'images/news/01.jpg' %}" alt="">#}
-{#                                <div class="news-top-meta">#}
-{#                                    <span class="entry-category">{{ activity.activity_name }}</span>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="news-details">#}
-{#                                <div class="news-description mb-20">#}
-{#                                    <h4 class="the-title mrb-30"><a href="#">{{ activity.description }}</a>#}
-{#                                    </h4>#}
-{#                                    <div class="news-bottom-meta">#}
-{#                                    <span class="entry-date mrr-20"><i#}
-{#                                            class="far fa-calendar-alt mrr-10 text-primary-color"></i>01 Jan, 2020</span>#}
-{#                                        <span class="entry-author"><i class="far fa-user mrr-10 text-primary-color"></i>Admin</span>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    {% endfor %}#}
                     {% if selected_activities|length > 0 %}
                             {% for activity in selected_activities %}
                                 <div class="col-lg-12 col-xl-4">
                                     <div class="news-wrapper mrb-30 mrb-sm-40">
                                         <div class="news-thumb">
-                                            <a href="#">
+                                            <a href="{% url 'activity' %}">
                                                 <img style="max-width: 100%; min-width: 100%; max-height: 250px; min-height: 250px"
                                                      class="img-full" src="{{ activity.activity_image.url }}" alt="">
                                             </a>
 
                                             {% for activity in activity.org_name.all %}
                                                 <div class="news-top-meta">
-                                                    <span class="entry-category">{{ activity.org_name }}</span>
+                                                    <a href="{% url 'organizations' %}"><span class="entry-category">{{ activity.org_name }}</span></a>
                                                 </div>
                                             {% endfor %}
                                         </div>
@@ -132,7 +109,7 @@
                                         <div class="news-details">
                                             <div class="news-description mb-20">
                                                 <h4 class="the-title mrb-30"><a
-                                                        href="#">{{ activity.activity_name }}</a>
+                                                        href="{% url 'activity' %}">{{ activity.activity_name }}</a>
                                                 </h4>
                                                 <div class="news-bottom-meta">
                                                 <span class="entry-date mrr-20"><i
@@ -258,17 +235,13 @@
                         <div class="col-md-6 col-lg-6 col-xl-4">
                         <div class="team-block mrb-30">
                             <div class="team-upper-part">
+                                <a href="{% url 'hosts' %}">
                                 <img style="max-width: 100%; min-width: 100%; max-height: 250px; min-height: 250px" class="img-full" src="{{ selected_host.host_image.url }}" alt="">
+                                </a>
                             </div>
                             <div class="team-bottom-part">
-                                <h4 class="team-title mrb-5"><a href="#">{{ selected_host.host_name }}</a></h4>
+                                <h4 class="team-title mrb-5"><a href="{% url 'hosts' %}">{{ selected_host.host_name }}</a></h4>
                                 <h6 class="designation">{{ selected_host.position }}</h6>
-                                <ul class="social-list vertical-style list-sm">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -306,6 +279,8 @@
                             <h3 class="mrt-0 mrb-20 solid-bottom-line">Feel Free to Contact Us</h3>
                             <p class="mrb-30">Distinctively exploit optimal alignments for intuitive coordinate business
                                 applications technologies</p>
+
+{#                            dokunma!!!#}
                             <form action="{% url 'contactview' %}" method="post">
                                         {% csrf_token %}
 
@@ -395,7 +370,7 @@
                     <div class="col"></div>
                     <div class="col-lg-8">
                         <div class="title-box-center">
-                            <h5 class="shadow-text">Reviews</h5>
+
                             <h5 class="sub-title-center text-primary-color line-top-center mrb-30">Testimonials</h5>
                             <h2 class="title">What People and Clients Think About Us?</h2>
                         </div>
@@ -412,10 +387,10 @@
                             <div class="testimonial-item">
                                 <span class="quote-icon fas fa-quote-right"></span>
                                 <div class="testimonial-thumb">
-                                    <img style="max-width: 100%; min-width: 100%; max-height: 150px; min-height: 150px"
-                                         src="{{ organization.org_image.url }}" alt="">
+                                    <a href="{% url "organizations" %}"><img style="max-width: 100%; min-width: 100%; max-height: 150px; min-height: 150px"
+                                         src="{{ organization.org_image.url }}" alt=""></a>
                                 </div>
-                                <a href="{% url 'activity_view_with_category' organization.slug %}"><h4 class="client-name" style="color: #0c59db">{{ organization.org_name }}</h4></a>
+                                <a href="{% url "organizations" %}"><h4 class="client-name" style="color: #0c59db">{{ organization.org_name }}</h4></a>
                                 <h6 class="client-designation" style="color: #4b75bd">{{ organization.authorized }}</h6>
                                 <div class="testimonial-content">
                                     <p class="comments">{{ organization.org_description|truncatechars:300 }}</p>

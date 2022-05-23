@@ -25,27 +25,23 @@
                 <div class="row">
                     <div class="col-lg-6 header-top-left-part">
                         <span class="address"><i class="webexflaticon flaticon-placeholder-1"></i>Havaalani Konaklar Trabzon</span>
-                        <span class="phone"><i class="webexflaticon flaticon-send"></i> example@gmail.com</span>
+
                     </div>
 
 
                     <div class="col-lg-6 header-top-right-part text-right">
-                        <ul class="social-links">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                        </ul>
+
                         <div class="language">
-                        
-                        {% if user.is_authenticated %}
-                            <a class="language-btn" href="#"><i class="fas fa-user"
-                                                                style="margin: 0.3rem"></i>{{ user }}</a>
+
+                            {% if user.is_authenticated %}
+                                <a class="language-btn" href="#"><i class="fas fa-user"
+                                                                    style="margin: 0.3rem"></i>{{ user }}</a>
+
                             {% else %}
-                            <a class="language-btn" href="{% url 'login' %}"><i class="fas fa-user"
-                                                                style="margin: 0.3rem"></i>User</a>
-                        
-                        {% endif %} 
+                                <a class="language-btn" href="{% url 'login' %}"><i class="fas fa-user"
+                                                                                    style="margin: 0.3rem"></i>User</a>
+
+                            {% endif %}
 
 
 
@@ -53,9 +49,10 @@
                             <ul class="language-dropdown">
                                 {% if user.is_authenticated %}
                                     <li><a href="{% url 'login' %}">Logout</a></li>
+
                                 {% else %}
                                     <li><a href="{% url 'login' %}">Login</a></li>
-                                    <li><a href="{% url 'register' %}">Register</a></li>
+{#                                    <li><a href="{% url 'register' %}">Register</a></li>#}
 
                                 {% endif %}
 
@@ -74,7 +71,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <a class="navbar-brand logo f-left mrt-10 mrt-md-0" href="{% url 'index' %}">
-                            <img id="logo-image" class="img-center" src="{% static 'images/c.png' %}" alt="">
+                            <img id="logo-image" class="img-center" src="{% static 'images/certifica.jpg' %}" alt="">
                         </a>
                         <div class="mobile-menu-right"></div>
                         <div class="header-searchbox-style-two d-none d-xl-block">
