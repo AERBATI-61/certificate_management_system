@@ -20,4 +20,5 @@ urlpatterns = [
     path('certificate/<int:id>', certificateView, name="certificate"),
     path('certificates', certificatesView, name="certificates"),
     path('certificalar', certificalar, name="certificalar"),
+    path('pdf/<pk>/', render_pdf_view, name="pdf"),
 ]

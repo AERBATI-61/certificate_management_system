@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+
+
+        .degree {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            padding: 14px 16px;
+            border: 1px solid;
+            background-color: #0c59db;
+        }
+
+
+        .participant {
+            text-align: center;
+            color: #0c59db;
+            font-size: 20px
+        }
+
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        li span {
+            display: block;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .resim {
+            display: block;
+            width: 100px;
+            height: 100px;
+            max-height: 40px;
+            min-height: 10px;
+            border-radius: 35px;
+
+        }
+
+        .organisation_name {
+            display: block;
+            text-align: right;
+            color: #0c59db;
+            font-size: 24px;
+            border-right: none;
+
+
+        }
+
+
+
+
+
+
+
+        .activity_name {
+            text-align: center;
+            color: #0c59db;
+            font-size: 20px
+        }
+
+        .tarafindan {
+            text-align: center;
+            font-size: 20px
+        }
+
+
+        .tarafindan {
+            text-align: center;
+            font-size: 20px
+        }
+
+        .host_name {
+            text-align: center;
+            color: #0c59db;
+            font-size: 20px
+        }
+
+        .descriptions {
+            text-align: center;
+            font-size: 14px
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+<div class="preloader"></div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div>
+                    <div class="degree">
+                        <h4>{{ certificate.cer_deg }}</h4>
+                    </div>
+
+                    <div>
+
+
+                        <ul class="items">
+                            <li><span
+                                    class="organisation_name"
+                                    style="font-size: 24px; margin-top: 50px ">{{ certificate.organisation_name.org_name }}</span>
+                            </li>
+                            <li><span class="resim">
+                                <img src="{{ certificate.organisation_name.org_image.path }}" alt=""></span>
+                            </li>
+
+                        </ul>
+
+                        <br><br>
+
+                        <div class="participant">
+                            Sayin {{ certificate.participant_name.name }} {{ certificate.participant_name.surname }}
+                        </div>
+                    <br><br>
+
+
+                        <div class="activity_name">
+                            {{ certificate.activity_name.activity_name }}
+                        </div>
+
+
+                        <div class="tarafindan">
+                            {{ certificate.activity_name.starttime.date }}
+                            tarihinde {{ certificate.organisation_name.org_name }} Koordinatorlugunde
+                        </div>
+                    <br>
+
+
+                    <div class="host_name">
+                        {% for certificate in certificate.host_name.all %}
+                            <span style="font-size: 22px; color: #0c59db">{{ certificate.host_name }} {{ certificate.surname }}, </span>
+                        {% endfor %}
+                    </div>
+
+                    <br>
+                        <div class="descriptions">
+{#                            {{ certificate.organisation_name.org_description|truncatewords:30 }}#}
+                            {{ certificate.cer_description|truncatewords:30 }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
+
+
+
