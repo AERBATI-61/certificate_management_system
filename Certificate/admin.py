@@ -99,7 +99,7 @@ class HostAdmin(admin.ModelAdmin):
 
                         else:
                             if selected[i].starttime.date() >= today or selected[b].starttime.date() >= today:
-                                messages.add_message(request, messages.WARNING, f'{selected[b]} starts at {selected[b].starttime.date()}.  {selected[i]} starts at {selected[i].starttime.date()}')
+                                messages.add_message(request, messages.SUCCESS, f'{selected[b]} starts at {selected[b].starttime.date()}.  {selected[i]} starts at {selected[i].starttime.date()}')
                                 return HttpResponseRedirect('http://127.0.0.1:8000/admin/Certificate/host/')
 
                             elif selected[i].starttime.date() <= today or selected[b].starttime.date() <= today:
@@ -124,7 +124,7 @@ class HostAdmin(admin.ModelAdmin):
                         return HttpResponseRedirect(request.path_info)
 
                     elif selected[b].starttime.date() >= today or selected[i].starttime.date() >= today:
-                        messages.add_message(request, messages.WARNING,f'this {selected[b]} start time is {selected[b].starttime.date()}.  this {selected[i]} start time is {selected[i].starttime.date()}')
+                        messages.add_message(request, messages.SUCCESS,f'this {selected[b]} start time is {selected[b].starttime.date()}.  this {selected[i]} start time is {selected[i].starttime.date()}')
                         return HttpResponseRedirect('http://127.0.0.1:8000/admin/Certificate/host/')
 
         else:
@@ -215,7 +215,7 @@ class ParticipantAdmin(admin.ModelAdmin):
 
                         else:
                             if selected[i].starttime.date() >= today or selected[b].starttime.date() >= today:
-                                messages.add_message(request, messages.WARNING,
+                                messages.add_message(request, messages.SUCCESS,
                                                      f'{selected[b]} starts at {selected[b].starttime.date()}.  {selected[i]} starts at {selected[i].starttime.date()}')
                                 return HttpResponseRedirect('http://127.0.0.1:8000/admin/Certificate/participant/')
 
@@ -252,7 +252,7 @@ class ParticipantAdmin(admin.ModelAdmin):
                         return HttpResponseRedirect(request.path_info)
 
                     elif selected[b].starttime.date() >= today or selected[i].starttime.date() >= today:
-                        messages.add_message(request, messages.WARNING,f'this {selected[b]} start time is {selected[b].starttime.date()}.  this {selected[i]} start time is {selected[i].starttime.date()}')
+                        messages.add_message(request, messages.SUCCESS,f'this {selected[b]} start time is {selected[b].starttime.date()}.  this {selected[i]} start time is {selected[i].starttime.date()}')
                         return HttpResponseRedirect('http://127.0.0.1:8000/admin/Certificate/participant/')
                         # return HttpResponseRedirect(request.path_info)
 
