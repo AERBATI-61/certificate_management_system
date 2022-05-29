@@ -25,11 +25,23 @@
                 <div class="row">
                     <div class="col-lg-6 header-top-left-part">
                         <span class="address"><i class="webexflaticon flaticon-placeholder-1"></i>Havaalani Konaklar Trabzon</span>
+                        <span class="phone"><i class="webexflaticon flaticon-send"></i> arafatemin@gmail.com</span>
 
                     </div>
 
 
                     <div class="col-lg-6 header-top-right-part text-right">
+                        <ul class="social-links">
+                            <li><a href="https://www.facebook.com/" target="_blank"><i
+                                    class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://github.com/AERBATI-61" target="_blank"><i
+                                    class="fab fa-github"></i></a></li>
+                            <li><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/feed/" target="_blank"><i
+                                    class="fab fa-linkedin-in"></i></a></li>
+
+
+                        </ul>
 
                         <div class="language">
 
@@ -52,7 +64,7 @@
 
                                 {% else %}
                                     <li><a href="{% url 'login' %}">Login</a></li>
-{#                                    <li><a href="{% url 'register' %}">Register</a></li>#}
+                                    <li><a href="{% url 'register' %}">Register</a></li>
 
                                 {% endif %}
 
@@ -71,7 +83,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <a class="navbar-brand logo f-left mrt-10 mrt-md-0" href="{% url 'index' %}">
-                            <img id="logo-image" class="img-center" src="{% static 'images/certifica.jpg' %}" alt="">
+                            <img id="logo-image" class="img-center" src="{% static 'images/certificat.jpg' %}" alt="">
                         </a>
                         <div class="mobile-menu-right"></div>
                         <div class="header-searchbox-style-two d-none d-xl-block">
@@ -132,24 +144,28 @@
             <div class="row">
                 <div class="col-xl-5 col-lg-6 col-md-6">
                     <div class="widget footer-widget">
-                        <img src="{% static 'images/logo-footer.png' %}" alt="" class="mrb-20">
+
+
+                        <a class="mrb-20" href="{% url 'index' %}">
+
+                            <img width="40" height="40" id="logo-image" class="img-center"
+                                 src="{% static 'images/certificat.jpg' %}" alt="">
+                        </a><br> <br>
                         <address class="mrb-25">
-                            <p class="text-light-gray">32 Dora Creek,
-                                Australia</p>
+                            <p class="text-light-gray">Havaalani konaklar Trabzon</p>
+
                             <div class="mrb-10"><a href="#" class="text-light-gray"><i
-                                    class="fas fa-phone-alt mrr-10"></i>+088 234 432 15565</a></div>
+                                    class="fas fa-phone-alt mrr-10"></i>+5380514510</a></div>
+
                             <div class="mrb-10"><a href="#" class="text-light-gray"><i
-                                    class="fas fa-envelope mrr-10"></i>sample@yourdomain.com</a></div>
-                            <div class="mrb-0"><a href="#" class="text-light-gray"><i class="fas fa-globe mrr-10"></i>www.domainname.com</a>
+                                    class="fas fa-envelope mrr-10"></i>arafatemin@gmail.com</a></div>
+                            <div class="mrb-0"><a href="#" class="text-light-gray"><i class="fas fa-globe mrr-10"></i>www.certificate.com</a>
                             </div>
                         </address>
-                        <ul class="social-list">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                        </ul>
+
+
                     </div>
+
                 </div>
 
 
@@ -157,31 +173,26 @@
                     <div class="widget footer-widget">
                         <h5 class="widget-title text-white mrb-30">Useful Links</h5>
                         <ul class="footer-widget-list">
-                            <li>
-                                <a href="#">Home</a>
-                            </li>
-                            <li><a href="#">Activities</a></li>
-                            <li><a href="#">Participant</a></li>
-                            <li><a href="#">Certificate</a></li>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'organizations' %}">Organization</a></li>
+                            <li><a href="{% url 'activity' %}">Activities</a></li>
+                            <li><a href="{% url 'hosts' %}">Hosts</a></li>
+                            <li><a href="{% url 'participants' %}">Participant</a></li>
+                            <li><a href="{% url 'certificalar' %}">Certificate</a></li>
                         </ul>
                     </div>
                 </div>
-                {#                <div class="col-xl-2 col-lg-6 col-md-6">#}
-                {#                    <div class="widget footer-widget">#}
-                {#                        <h5 class="widget-title text-white mrb-30"></h5>#}
-                {##}
-                {#                    </div>#}
-                {#                </div>#}
 
 
                 <div class="col-xl-4 col-lg-6 col-md-6">
                     <div class="widget footer-widget">
-                        <h5 class="widget-title text-white mrb-30">Newsletter</h5>
-                        <p class="text-light-gray">Seamlessly visualize quality intellectual capital without superior
-                            collaboration and idea sharing listically</p>
-                        <input type="text" class="form-control" placeholder="Enter Your Email">
-                        <a href="#" class="cs-btn-one btn-gradient-color btn-sm has-icon mrt-20"><i
-                                class="webexflaticon flaticon-send"></i>Submit Now</a>
+                        <h5 class="widget-title text-white mrb-30">Contact Us</h5>
+                        <p class="text-light-gray">If there is any site you want, you can contact me directly. I am
+                            ready to present a site that looks
+                            both cheap and beautiful as soon as possible.</p>
+                        <div class="btn-box">
+                            <a href="#git" class="cs-btn-one btn-gradient-color">Contact Us</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -192,20 +203,20 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="text-center">
-                        <span class="text-light-gray">Copyright © 2022 by <a class="text-primary-color" target="_blank"
-                                                                             href="#"> Certificate</a> | School </span>
+                        <span class="text-light-gray">Certificate © 2022 by <a class="text-primary-color"
+                                                                               target="_blank"
+                                                                               href="https://www.ktu.edu.tr/">KTU</a></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {#    blogs : category.objects.get(slug=slug).blog_set.filter(is_active=True)#}
+
 </footer>
 
 <div class="back-to-top bg-gradient-color">
     <i class="fab fa-angle-up"></i>
 </div>
-<!-- Integrated important scripts here -->
 <script src="{% static 'js/jquery.v1.12.4.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/jquery-core-plugins.js' %}"></script>
