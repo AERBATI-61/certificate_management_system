@@ -47,7 +47,7 @@
 
                             {% if user.is_authenticated %}
                                 <a class="language-btn" href="#"><i class="fas fa-user"
-                                                                    style="margin: 0.3rem"></i>{{ user }}</a>
+                                                                    style="margin: 0.3rem"></i>{{ user|truncatechars:6 }}</a>
 
                             {% else %}
                                 <a class="language-btn" href="{% url 'login' %}"><i class="fas fa-user"
@@ -104,7 +104,11 @@
                                     <li><a href="{% url 'hosts' %}">Hosts</a></li>
                                     <li><a href="{% url 'participants' %}">Participant</a></li>
                                     {#                                    <li><a href="{% url 'certificates' %}">Certificate</a></li>#}
-                                    <li><a href="{% url 'certificalar' %}">Certificate</a></li>
+
+
+                                    {% if request.user.is_staff %}
+                                        <li><a href="{% url 'certificalar' %}">Certificate</a></li>
+                                    {% endif %}
 
 
                                     {#                                    <li class="has-sub right-view">#}

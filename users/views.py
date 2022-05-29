@@ -2,9 +2,12 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+# from Certificate.decorators import unauthenticated_user, allowed_users
 
+
+
+# @unauthenticated_user
 def register(request):
-
     if request.method == "POST":
         username = request.POST["username"]
         lastname = request.POST["lastname"]
@@ -39,9 +42,8 @@ def register(request):
 
     return render(request, "register.html")
 
-
+# @unauthenticated_user
 def loginUser(request):
-
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -59,6 +61,6 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect("index")
-    pass
+    return redirect("login")
+
 

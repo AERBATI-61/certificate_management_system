@@ -1,4 +1,6 @@
 from datetime import date
+
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponse
 from django.views.generic import DetailView
@@ -8,6 +10,7 @@ from .forms import *
 from django.db.models import Q
 import random
 # from utils.pdf import render_to_pdf
+from .decorators import allowed_users
 
 
 # pdf
@@ -20,7 +23,7 @@ from django.shortcuts import render, get_object_or_404
 
 
 
-
+@login_required(login_url='login')
 def render_pdf_view(request, *args, **kwargs):
     pk = kwargs.get('pk')
     certificate = get_object_or_404(Certificate, pk=pk)
@@ -57,7 +60,7 @@ def render_pdf_view(request, *args, **kwargs):
 
 
 
-
+@login_required(login_url='login')
 def indexView(request):
     organizations = Organization.objects.all()
     hosts = Host.objects.all()
@@ -107,7 +110,7 @@ def indexView(request):
     }
     return render(request, 'index.html', context)
 
-
+@login_required(login_url='login')
 def activityView(request):
     paginator = Paginator(Activity.objects.filter(active=True), 4)
     page_number = request.GET.get('page', 1)
@@ -122,7 +125,7 @@ def activityView(request):
     }
     return render(request, 'activities.html', context)
 
-
+@login_required(login_url='login')
 def activity_view_with_category(request, slug, *args, **kwargs):
     activity = Organization.objects.get(slug=slug)
     activities = activity.activity_set.filter(active=True)
@@ -134,7 +137,7 @@ def activity_view_with_category(request, slug, *args, **kwargs):
 
 
 
-
+@login_required(login_url='login')
 def activityDetail(request, slug):
     activity = Activity.objects.get(slug=slug)
     activities = Activity.objects.all()
@@ -145,6 +148,10 @@ def activityDetail(request, slug):
     return render(request, 'activity_detail.html', context)
 
 
+
+
+
+@login_required(login_url='login')
 class Contactview(View):
     def get(self, request, *args, **kwargs):
         context = {
@@ -160,6 +167,12 @@ class Contactview(View):
             return render(request, 'basarili.html', context={'form': ContactForm()})
 
 
+@login_required(login_url='login')
+def decoratorView(request):
+    return render(request, 'decorators.html')
+
+
+@login_required(login_url='login')
 def participantsView(request):
     participants = Participant.objects.all()
     participantss = Participant.objects.all()
@@ -174,7 +187,7 @@ def participantsView(request):
 
 
 
-
+@login_required(login_url='login')
 def participantView(request, id, *args, **kwargs):
     certificate = Certificate.objects.filter(active=True, activity_name=id)
     participant = Participant.objects.filter(activity_name=id)
@@ -188,14 +201,14 @@ def participantView(request, id, *args, **kwargs):
     }
     return render(request, 'participant.html', context)
 
-
+@login_required(login_url='login')
 def hostView(request):
     context = {
         'hosts': Host.objects.all()
     }
     return render(request, 'host.html', context)
 
-
+@login_required(login_url='login')
 def organizationView(request):
     context = {
         'organizations': Organization.objects.all()
@@ -215,7 +228,8 @@ def organizationView(request):
 
 
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def certificateView(request, id, *args, **kwargs):
 
     certificate = Certificate.objects.filter(active=True, cer_code=id)
@@ -225,7 +239,8 @@ def certificateView(request, id, *args, **kwargs):
     }
     return render(request, 'certificates.html', context)
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def certificatesView(request):
 
     certificates = Certificate.objects.all()
@@ -237,7 +252,8 @@ def certificatesView(request):
 
 
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def certificalar(request):
     context = {}
     activities = Activity.objects.all()
@@ -268,26 +284,3 @@ def certificalar(request):
 
 
 
-def download_pdf(request, id):
-
-
-
-
-
-    data = {
-        "company": "Dennnis Ivanov Company",
-        "address": "123 Street name",
-        "city": "Vancouver",
-        "state": "WA",
-        "zipcode": "98663",
-        "phone": "555-555-2345",
-        "email": "youremail@dennisivy.com",
-        "website": "dennisivy.com",
-
-
-    }
-    pdf = render_to_pdf('users/certificalar.html', data)
-    filename = f"{id}"
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'inline; filename="{}"'.format(filename)
-    return response
