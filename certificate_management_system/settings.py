@@ -123,12 +123,16 @@ USE_TZ = True
 # STATICFILES_DIRS = os.path.join(BASE_DIR, 'Certificate/static'),
 
 
+# STATIC_URL = 'static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, '../Certificate/static/'),
+# ]
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'Certificate/static'),
-]
-
-
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'Certificate/static'),
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
