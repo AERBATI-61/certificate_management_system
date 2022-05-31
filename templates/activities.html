@@ -2,6 +2,12 @@
 {% load static %}
 {% block content %}
 
+    <style>
+    .activite{
+        background-color: red;
+    }
+    </style>
+
 
 
     <body>
@@ -93,7 +99,7 @@
                             <ul class="active">
                                 {% if organizations|length > 0 %}
                                     {% for organization in organizations %}
-                                        <li><a href="{% url 'activity_view_with_category' organization.slug %}">
+                                        <li><a class="activite" href="{% url 'activity_view_with_category' organization.slug %}">
                                             <i class="fa fa-chevron-right"></i>{{ organization.org_name|title }} </a>
                                         </li>
                                     {% endfor %}
