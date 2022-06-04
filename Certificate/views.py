@@ -328,6 +328,7 @@ def certificalar(request):
 # @allowed_users(allowed_roles=['admin'])
 def qr_code_view(request):
     obj = Website.objects.all()
+    objects = Product.objects.all()
     google_forms = GoogleForm.objects.all()
     keyword = request.GET.get("keyword")
     if keyword:
@@ -335,6 +336,7 @@ def qr_code_view(request):
         return render(request, "qr_code.html", {'objs': objs})
     context = {
         'objs': obj,
+        'objects': objects,
         'google_forms': google_forms,
     }
     return render(request, 'qr_code.html', context)
@@ -363,6 +365,40 @@ def qr_pdf_view(request, *args, **kwargs):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
+
+
+
+
+@login_required(login_url='login')
+def barcode_pdf_view(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    objs = get_object_or_404(Product, pk=pk)
+    template_path = '../templates/barcode.html'
+    context = {
+        'objs': objs,
+    }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/barcode')
+    response['Content-Disposition'] = 'filename="barcode.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+
+
+
+
+
+
 
 
 

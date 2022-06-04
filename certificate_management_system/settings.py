@@ -129,6 +129,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'Certificate/static'
 ]
 
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 

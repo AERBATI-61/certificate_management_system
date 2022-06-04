@@ -179,7 +179,7 @@
                         </div>
                         <div class="tarafindan">
                             {{ certificate.organisation_name.org_name }}
-                            on {{ certificate.activity_name.starttime.date }}
+                            on {{ certificate.activity_name.starttime.date|date:"D d M Y" }}
                         </div>
 
 

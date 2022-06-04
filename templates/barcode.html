@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0 ">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Certificate</title>
+
+    <style>
+
+
+        @page {
+            size: landscape;
+        }
+
+        .degree {
+            text-align: center;
+            color: white;
+            font-size: 50px;
+            border: 0px;
+            background-color: #0c1c42;
+            height: 500px;
+            font-family: Brush Script MT, serif;
+            padding-top: 50px;
+            padding-bottom: 40px;
+        }
+
+        .resim {
+            width: 500px;
+            height: 500px;
+            margin-left: 330px;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+
+<section>
+    <div class="container">
+        <div class="degree">
+            <h4>{{ objs.name }}</h4>
+        </div>
+        <div class="row ">
+            <div class="resim">
+                <img src="{{ objs.barcode.path }}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

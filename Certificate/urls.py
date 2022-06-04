@@ -28,6 +28,7 @@ urlpatterns = [
 
     path('pdf/<pk>/', render_pdf_view, name="pdf"),
     path('qr/<pk>/', qr_pdf_view, name="qr_pdf"),
+    path('barcode/<pk>/', barcode_pdf_view, name="barcode_pdf_view"),
     path('googleForm/<pk>/', googleForm_pdf_view, name="googleForm_pdf_view"),
     path('qr/', qr_code_view, name="qr"),
     path('send_email/', send_email, name="send_email"),

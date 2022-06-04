@@ -285,3 +285,8 @@ admin.site.register(GoogleForm)
 class SendEmailAdmin(admin.ModelAdmin):
     list_display = ('fullname', 'subject', 'email')
 admin.site.register(SendEmail,SendEmailAdmin)
+
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(Product,ProductAdmin)

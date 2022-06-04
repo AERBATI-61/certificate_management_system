@@ -17,15 +17,18 @@
                     <div class="header-searchbox-style-two d-none d-xl-block">
                         <div class="show-searchbox">
                             <form>
+
                                 <div>
                                     <input type="text" name="keyword" class="form-control" placeholder="Search...">
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <br><br> <br><br> <br><br>
+            <br><br>
+
             <section class="pdt-105 pdb-80 position-relative z-index-2" data-background="images/bg/abs-bg1.png">
                 <div class="section-content">
                     <div class="container">
@@ -34,47 +37,71 @@
                             {% for o in objs %}
 
 
-                                    <div class="col-md-6 col-lg-4 col-xl-4" >
-                                        <div class="price-table mrb-30 text-center">
-                                            <div class="table-header">
-                                                <h4 class="pricing-plan-name">{{ o.name }}</h4>
+                                <div class="col-md-6 col-lg-4 col-xl-4">
+                                    <div class="price-table mrb-30 text-center">
+                                        <div class="table-header">
+                                            <h4 class="pricing-plan-name">{{ o.name }}</h4>
+                                        </div>
+                                        <div class="table-content">
+                                            <div style="border-radius: 35px; max-width: 20%; min-width: 30%; max-height: 20px; min-height: 30px">
+                                                <img src="{{ o.qr_code.url }}" alt="">
                                             </div>
-                                            <div class="table-content">
-                                                <div style="border-radius: 35px; max-width: 20%; min-width: 20%; max-height: 20px; min-height: 20px">
-                                                    <img src="{{ o.qr_code.url }}" alt="">
-                                                </div>
-                                                <ul class="list-items">
-                                                </ul>
-                                            </div>
-                                            <div class="table-footer">
-                                                <a href="{% url 'qr_pdf' o.pk %}" class="cs-btn-one btn-gradient-color">PDF</a>
-                                            </div>
+                                            <ul class="list-items">
+                                            </ul>
+                                        </div>
+                                        <div class="table-footer">
+                                            <a href="{% url 'qr_pdf' o.pk %}"
+                                               class="cs-btn-one btn-gradient-color">PDF</a>
                                         </div>
                                     </div>
+                                </div>
+
+                            {% endfor %}
+                            {% for o in objects %}
+
+
+                                <div class="col-md-6 col-lg-4 col-xl-4">
+                                    <div class="price-table mrb-30 text-center">
+                                        <div class="table-header">
+                                            <h4 class="pricing-plan-name">{{ o.name }}</h4>
+                                        </div>
+                                        <div class="table-content">
+                                            <div style="border-radius: 35px; max-width: 20%; min-width: 30%; max-height: 20px; min-height: 30px">
+                                                <img src="{{ o.barcode.url }}" alt="">
+                                            </div>
+                                            <ul class="list-items">
+                                            </ul>
+                                        </div>
+                                        <div class="table-footer">
+                                            <a href="{% url 'barcode_pdf_view' o.pk %}"
+                                               class="cs-btn-one btn-gradient-color">PDF</a>
+                                        </div>
+                                    </div>
+                                </div>
 
                             {% endfor %}
 
 
                             {% for google_form in google_forms %}
 
-                                    <div class="col-md-6 col-lg-4 col-xl-4" >
-                                        <div class="price-table mrb-30 text-center">
-                                            <div class="table-header">
-                                                <h4 class="pricing-plan-name">{{ google_form.activity_name }}</h4>
+                                <div class="col-md-6 col-lg-4 col-xl-4">
+                                    <div class="price-table mrb-30 text-center">
+                                        <div class="table-header">
+                                            <h4 class="pricing-plan-name">{{ google_form.activity_name }}</h4>
+                                        </div>
+                                        <div class="table-content">
+                                            <div style="border-radius: 35px; max-width: 20%; min-width: 30%; max-height: 20px; min-height: 30px">
+                                                <img src="{{ google_form.our_forms.url }}" alt="">
                                             </div>
-                                            <div class="table-content">
-                                                <div style="border-radius: 35px; max-width: 20%; min-width: 20%; max-height: 20px; min-height: 20px">
-                                                    <img src="{{ google_form.our_forms.url }}" alt="">
-                                                </div>
-                                                <ul class="list-items">
-                                                </ul>
-                                            </div>
-                                            <div class="table-footer">
-                                                <a href="{% url 'googleForm_pdf_view' google_form.pk %}"
-                                                   class="cs-btn-one btn-gradient-color">PDF</a>
-                                            </div>
+                                            <ul class="list-items">
+                                            </ul>
+                                        </div>
+                                        <div class="table-footer">
+                                            <a href="{% url 'googleForm_pdf_view' google_form.pk %}"
+                                               class="cs-btn-one btn-gradient-color">PDF</a>
                                         </div>
                                     </div>
+                                </div>
 
                             {% endfor %}
 
