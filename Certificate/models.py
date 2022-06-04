@@ -11,6 +11,17 @@ from datetime import *
 
 from django.views.decorators.cache import never_cache
 
+# qr
+import qrcode
+from io import BytesIO
+from django.core.files import File
+from PIL import Image, ImageDraw
+
+
+
+
+
+
 stack_name = []
 
 level_of_education = (
@@ -121,11 +132,25 @@ class ContactUs(models.Model):
     name = models.CharField(max_length=64, null=True, blank=True)
     surname = models.CharField(max_length=64, null=True, blank=True)
     phone = models.CharField(max_length=16, null=True, blank=True)
+    activity = models.CharField(max_length=64, null=True, blank=True)
     email = models.EmailField(null=False, blank=True)
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.email
+
+
+class SendEmail(models.Model):
+    fullname = models.CharField(max_length=64, null=True, blank=True)
+    subject = models.CharField(max_length=128, null=True, blank=True)
+    email = models.EmailField(null=False, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.fullname + ' ' + self.subject
+
+
+
 
 
 class Host(models.Model):
@@ -137,3 +162,44 @@ class Host(models.Model):
 
     def __str__(self):
         return self.host_name
+
+
+
+'''
+import qrcode
+from io import BytesIO
+from django.core.files import File
+from PIL import Image, ImageDraw
+'''
+
+
+
+
+class Website(models.Model):
+    name = models.CharField(max_length=1024, blank=True, null=True)
+    qr_code = models.ImageField(upload_to='qr_codes', blank=True)
+
+    def __str__(self):
+        return str(self.name)
+
+    def save(self, *args, **kwargs):
+        qrcode_img = qrcode.make(self.name)
+        canvas = Image.new('RGB', (290, 290), 'white')
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        fname = f'qr_code-{self.name}' + '.png'
+        buffer = BytesIO()
+        canvas.save(buffer, 'PNG')
+        self.qr_code.save(fname, File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)
+
+
+
+
+class GoogleForm(models.Model):
+    activity_name = models.CharField(max_length=132, blank=True, null=True)
+    our_forms = models.ImageField(upload_to='google_forms', blank=True, verbose_name="Google Form")
+
+    def __str__(self):
+        return str(self.activity_name)

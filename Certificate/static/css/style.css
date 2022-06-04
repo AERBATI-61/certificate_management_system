@@ -2143,7 +2143,7 @@ textarea.form-control {
 
 .request-a-call-back-form {
   background: #fff;
-  padding: 55px 50px 60px 50px;
+  padding: 25px 25px 25px 25px;
   -webkit-box-shadow: -5px -1px 15px 10px rgba(38, 37, 37, 0.1);
   -khtml-box-shadow: -5px -1px 15px 10px rgba(38, 37, 37, 0.1);
   -moz-box-shadow: -5px -1px 15px 10px rgba(38, 37, 37, 0.1);
@@ -2160,8 +2160,8 @@ textarea.form-control {
   border-color: #0c59db transparent transparent #3032A2;
   content: "";
   position: absolute;
-  border-width: 12px 12px 12px 12px;
-  height: 64px;
+  border-width: 6px 6px 6px 6px;
+  height: 32px;
   width: 64px;
   border-style: solid;
   top: 0;
@@ -2172,28 +2172,28 @@ textarea.form-control {
 .request-a-call-back-form:before {
   position: absolute;
   content: "";
-  border-width: 12px 12px 12px 12px;
+  border-width: 6px 6px 6px 6px;
   border-color: #0c59db #3032A2 transparent transparent;
   top: 0;
   right: 0;
-  height: 64px;
-  width: 64px;
+  height: 32px;
+  width: 32px;
   border-style: solid;
-  opacity: 0.75;
+  opacity: 0.32;
 }
 
-.request-a-call-back-form.form-control {
-  margin-bottom: 20px;
-}
+/*.request-a-call-back-form.form-control {*/
+/*  !*margin-bottom: 10px;*!*/
+/*}*/
 
 .request-a-call-back-form .custom-select-categories {
   background-color: #fff;
   color: #17305e;
-  height: 56px;
+  height: 32px;
   width: 100%;
   font-size: 16px;
   font-weight: 400;
-  padding: 4px 15px;
+  padding: 4px 7px;
   border: 1px solid #dfdce6;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2203,7 +2203,7 @@ textarea.form-control {
 
 .request-a-call-back-form.sidebar {
   background: #17305e;
-  padding: 30px;
+  padding: 15px;
 }
 
 select {

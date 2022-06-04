@@ -19,6 +19,7 @@
     <section class="blog-single-news pdt-110 pdb-90">
         <div class="container">
             <div class="row">
+
                 <div class="col-xl-12 col-lg-12">
                     <div class="single-news-details news-wrapper mrb-30">
                         <div class="news-thumb">
@@ -49,8 +50,70 @@
 
                                 </blockquote>
                             </div>
+                        <div class="reply-form mrt-40">
+									<h3 class="reply-title mrb-30">Join:  {{ activity.activity_name }}</h3>
+									<form action="{% url 'contactview' %}" method="post">
+                                        {% csrf_token %}
+
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="name" required placeholder="Name"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="surname" required placeholder="SurName"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <input type="tel" name="phone" required placeholder="Phone"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <input type="email" name="email" required placeholder="Email"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="activity"
+                                                           value="{{ activity.activity_name }}" readonly
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group btn-block">
+                                                    <textarea rows="8" name="description" required
+                                                              placeholder="Messages"
+                                                              class="form-control"></textarea>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-12">
+                                                <div class=" mrb-0">
+                                                    <button type="submit" class="cs-btn-one btn-primary-color btn-sm btn-block">
+                                                        Send Post
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+									<p class="form-message"></p>
+								</div>
                         </div>
+
                     </div>
+
                 </div>
 
             </div>

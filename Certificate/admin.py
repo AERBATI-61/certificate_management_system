@@ -268,9 +268,20 @@ admin.site.register(Participant, ParticipantAdmin)
 class OrgAdmin(admin.ModelAdmin):
     list_display = ('org_name', 'authorized', 'slug')
 
-
 admin.site.register(Organization, OrgAdmin)
 
 
 admin.site.register(Certificate)
-admin.site.register(ContactUs)
+
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'surname', 'activity', 'email')
+    readonly_fields = ('activity', )
+admin.site.register(ContactUs, ContactAdmin)
+
+admin.site.register(Website)
+admin.site.register(GoogleForm)
+
+class SendEmailAdmin(admin.ModelAdmin):
+    list_display = ('fullname', 'subject', 'email')
+admin.site.register(SendEmail,SendEmailAdmin)

@@ -17,7 +17,14 @@ from .decorators import allowed_users
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
+
+
+
+# Email
+from django.core.mail import send_mail
+from django.conf import settings
+from django.shortcuts import render
 
 
 
@@ -151,7 +158,7 @@ def activityDetail(request, slug):
 
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 class Contactview(View):
     def get(self, request, *args, **kwargs):
         context = {
@@ -165,6 +172,43 @@ class Contactview(View):
             c_form = form.save(commit=False)
             c_form.save()
             return render(request, 'basarili.html', context={'form': ContactForm()})
+
+
+
+
+
+
+
+def send_email(request):
+    if request.method == 'POST':
+        fullname = request.POST.get('fullname')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        description = request.POST.get('description')
+        data = {
+            'fullname': fullname,
+            'email': email,
+            'subject': subject,
+            'description': description,
+        }
+        print(data)
+
+        message = '''
+        New Message: {}
+        From: {}
+        '''.format(data['description'], data['email'])
+        send_mail(data['subject'], description, settings.EMAIL_HOST_USER, ['gapparmustafa@gmail.com'], fail_silently=False)
+
+        return HttpResponse('Thanks')
+
+
+
+
+
+
+
+
+
 
 
 @login_required(login_url='login')
@@ -267,10 +311,6 @@ def certificalar(request):
         print(participants)
         return render(request, "certificalar.html", {'participants': participants, 'activities': activities, 'certificates': certificate})
 
-
-
-
-
     context = {
         'certificates': certificate,
         'activities': activities,
@@ -281,6 +321,73 @@ def certificalar(request):
 
 
 
+
+
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin'])
+def qr_code_view(request):
+    obj = Website.objects.all()
+    google_forms = GoogleForm.objects.all()
+    keyword = request.GET.get("keyword")
+    if keyword:
+        objs = Website.objects.filter(name__contains=keyword)
+        return render(request, "qr_code.html", {'objs': objs})
+    context = {
+        'objs': obj,
+        'google_forms': google_forms,
+    }
+    return render(request, 'qr_code.html', context)
+
+
+
+@login_required(login_url='login')
+def qr_pdf_view(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    objs = get_object_or_404(Website, pk=pk)
+    template_path = '../templates/qr_code_pdf.html'
+    context = {
+        'objs': objs,
+    }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/qr')
+    response['Content-Disposition'] = 'filename="qr.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+
+@login_required(login_url='login')
+def googleForm_pdf_view(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    objs = get_object_or_404(GoogleForm, pk=pk)
+    template_path = '../templates/google_forms_pdf.html'
+    context = {
+        'objs': objs,
+    }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/qr')
+    response['Content-Disposition'] = 'filename="qr.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
 
 
